@@ -1,4 +1,5 @@
 import express from 'express'
+import axios from 'axios'
 import http from 'http'
 import mongoose from 'mongoose'
 import { config } from './config/config'
@@ -7,6 +8,7 @@ import customerRoutes from './routes/Customer'
 import userRoutes from './routes/User'
 
 const router = express();
+const cors = require('cors')
 
 // Connect to MongoDB
 mongoose.set("strictQuery", false)
@@ -49,9 +51,27 @@ const StartServer = () => {
       next();
   });
 
+  // Proxy
+  router.use(cors())
+
+  router.get('/cattp/:code', async (req, res) => {
+
+    let data: string | undefined = ''
+
+    const numberCode = req.params.code
+
+    await axios.get(`https://http.cat/${numberCode}`)
+    .then(resp => {
+      data = resp.config.url
+    })
+    .catch(error => console.log(error))
+
+    return res.json(data)
+  })
+
   // Routes
   router.use('/customers', customerRoutes);
-  router.use('/users', userRoutes)
+  router.use('/users', userRoutes);
 
   // Healthcheck
   router.get('/ping', (req, res, next) => res.status(200).json({ message: 'pong' }));

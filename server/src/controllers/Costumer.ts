@@ -32,7 +32,7 @@ const readCustomer = (req: Request, res: Response, next: NextFunction) => {
 
 const readAllCustomer = (req: Request, res: Response, next: NextFunction) => {
   return Customer.find()
-    .then((customers) => res.status(200).json({ customers }))
+    .then((customers) => res.status(200).json( customers ))
     .catch((error) => res.status(500).json({ error }))
 }
 
