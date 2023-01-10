@@ -6,6 +6,9 @@ import { AuthProvider } from './contexts/AuthContext'
 import { LoginProvider } from './contexts/LoginContext'
 import { CustomersProvider } from './contexts/CustomersContext'
 import { CreateCustomerProvider } from './contexts/CreateCustomerContext'
+import { UpdateCustomerProvider } from './contexts/UpdateCustomerContext'
+import { DeleteCustomerProvider } from './contexts/DeleteCustomerContext'
+import { GetCustomerProvider } from './contexts/GetCustomerContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -13,7 +16,13 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <LoginProvider>
         <CustomersProvider>
           <CreateCustomerProvider>
-            <App />
+            <UpdateCustomerProvider>
+              <DeleteCustomerProvider>
+                <GetCustomerProvider>
+                  <App />
+                </GetCustomerProvider>
+              </DeleteCustomerProvider>
+            </UpdateCustomerProvider>
           </CreateCustomerProvider>
         </CustomersProvider> 
       </LoginProvider>

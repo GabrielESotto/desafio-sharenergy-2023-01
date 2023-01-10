@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, ReactNode } from 'react'
+import { createContext, useState, ReactNode } from 'react'
 import axios from 'axios'
 
 type CreateCustomerType = {
@@ -7,12 +7,18 @@ type CreateCustomerType = {
   phone: string;
   adress: string;
   cpf: string;
-  setName: React.Dispatch<React.SetStateAction<string>>
-  setEmail: React.Dispatch<React.SetStateAction<string>>
-  setPhone: React.Dispatch<React.SetStateAction<string>>
-  setAdress: React.Dispatch<React.SetStateAction<string>>
-  setCpf: React.Dispatch<React.SetStateAction<string>>
-  handleCreate: (e: React.SyntheticEvent) => void;
+  itIsOpen: boolean;
+  btnIsClicked: boolean;
+  catchMessage: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
+  setAdress: React.Dispatch<React.SetStateAction<string>>;
+  setCpf: React.Dispatch<React.SetStateAction<string>>;
+  setBtnIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setCatchMessage: React.Dispatch<React.SetStateAction<string>>;
+  handleCreate: () => void;
+  closeModal: () => void;
 }
 
 type CreateCustomerProps = {
@@ -28,11 +34,16 @@ export const CreateCustomerProvider = ({children}: CreateCustomerProps) => {
   const [phone, setPhone] = useState('')
   const [adress, setAdress] = useState('')
   const [cpf, setCpf] = useState('')
+  const [btnIsClicked, setBtnIsClicked] = useState(false)
+  const [itIsOpen, setItIsOpen] = useState<boolean>(false)
+  const [catchMessage, setCatchMessage] = useState<string>('')
 
-  const handleCreate = (e: React.SyntheticEvent) => {
-    e.preventDefault()
+  const closeModal = () => {
+    setItIsOpen(prev => !prev)
+  }
 
-    axios.post('http://localhost:9090/customers/create', {
+  const handleCreate = async () => {
+    await axios.post('http://localhost:9090/customers/create', {
       name: name,
       email: email,
       phone: phone,
@@ -40,10 +51,17 @@ export const CreateCustomerProvider = ({children}: CreateCustomerProps) => {
       cpf: cpf
     })
     .then(res => {
-      console.log(res)
+      setCatchMessage('Cliente cadastrado com sucesso.')
+      closeModal()
+      
+      setTimeout(() => {
+        window.location.reload()
+      }, 600)
     })
     .catch(error => {
-      console.log(error)
+      if(error) {
+        setCatchMessage(error.response.data)
+      }
     })
   }
 
@@ -58,7 +76,13 @@ export const CreateCustomerProvider = ({children}: CreateCustomerProps) => {
     setAdress, 
     setPhone, 
     setCpf, 
-    handleCreate
+    handleCreate,
+    closeModal,
+    itIsOpen,
+    btnIsClicked,
+    setBtnIsClicked,
+    setCatchMessage,
+    catchMessage
   }
 
   return <CreateCustomerContext.Provider value={value}>{children}</CreateCustomerContext.Provider>

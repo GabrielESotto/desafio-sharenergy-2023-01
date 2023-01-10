@@ -4,6 +4,7 @@ import Random from "./features/Random/Random"
 import Dog from "./features/Dog/Dog"
 import Cat from "./features/Cat/Cat"
 import Customers from "./features/Customers/Customers"
+import Customer from "./features/Customer/Customer"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path='/dog' element={user === 'null' || !user ? <Home /> : <Dog />} />
       <Route path='/cat' element={user === 'null' || !user ? <Home /> : <Cat />} />
       <Route path='/customers' element={user === 'null' || !user ? <Home /> : <Customers />} />
+      <Route path='/customers/:id' element={user === 'null' || !user ? <Home /> : <Customer />} />
     </Routes>
   )
 }

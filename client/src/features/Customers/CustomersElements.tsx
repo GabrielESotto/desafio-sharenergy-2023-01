@@ -1,14 +1,23 @@
 import styled from 'styled-components'
+import bgLogo from '../../assets/images/bgHome.jpeg'
+
 
 export const Container = styled.div`
   max-width: 1700px;
-  height: 650px;
+  height: 800px;
   background-color: #f5faf0;
-  margin: 0 auto;
+  margin: 0 auto 40px auto;
   border-radius: 10px;
   -webkit-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   -moz-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   box-shadow: 3px 3px 16px 4px #585858be;
+`
+
+export const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url(${bgLogo});
+  background-size: cover
 `
 
 export const WrapItems = styled.div`
@@ -18,7 +27,7 @@ export const WrapItems = styled.div`
 `
 
 export const ContentBox = styled.div`
-  margin: 40px auto 0 auto;
+  margin: 30px auto 0px auto;
   width: 100%;
   max-width: 1500px;
   height: 500px;
@@ -52,4 +61,11 @@ export const WrapRight = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+`
+
+export const UlWrap = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
 `

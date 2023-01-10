@@ -38,20 +38,6 @@ export const WrapBox = styled.div`
   flex-wrap: wrap;
 `
 
-export const Box = styled.div`
-  width: 400px;
-  height: 400px;
-  background-color: #fbffe4;
-  margin-top: 40px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  -webkit-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
-  -moz-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
-  box-shadow: 3px 3px 16px 4px #585858be;
-`
-
 export const PhotoUser = styled.img`
   width: 100px;
   height: 100px;
@@ -71,30 +57,11 @@ export const SearchInput = styled.input`
   text-align: center;
 `
 
-export const WrapInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-`
-
-export const Label = styled.div`
-  color: grey;
-  font-size: 11px;
-`
-
-export const InfoLabel = styled.p`
-  font-size: 12px;
-  margin-top: 5px;
-
-`
-
 export const WrapPagination = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25px;
+  margin-top: -15px;
 `
 
 export const Pagination = styled.button`
@@ -137,5 +104,12 @@ export const ColorButton = styling(Button)<ButtonProps>(({ theme }) => ({
 
 export const WrapSearch = styled.div`
   display: inline-block;
-  margin: 20px auto;
+  margin: 15px auto;
+  position: relative;
+`
+
+export const WrapIconSearch = styled.div`
+  position: absolute;
+  top: 22px;
+  left: 5px;
 `

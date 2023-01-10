@@ -3,47 +3,61 @@ import Global from '../../assets/styles/global'
 import axios from 'axios'
 import { Result } from '../../interfaces/types'
 import { useState, useEffect } from 'react'
+import Pagination from '../../components/Pagination/Pagination'
 import SearchIcon from '@mui/icons-material/Search';
 import {
   Background,
   Container,
   Title,
   ContainerBox,
-  Box,
   WrapBox,
-  PhotoUser,
-  InfoLabel,
-  WrapInfo,
-  Label,
   SearchInput,
   WrapPagination,
-  Pagination,
-  ColorButton,
-  WrapSearch
+  WrapSearch,
+  WrapIconSearch
 } from './RandomElements'
-import usePagination from '../../hooks/usePagination'
+import ShowRandomUsers from '../../components/ShowRandomUsers/ShowRandomUsers'
 
 const Random = () => {
 
+  // States Random User Page
   const [users, setUsers] = useState<Result[]>([])
-  const [filter, setFilter] = useState('')
-  const { actualPage, setActualPage } = usePagination()
+  const [loading, setLoading] = useState<boolean>(false)
+  const [filter, setFilter] = useState<string>('')
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [usersPerPage] = useState<number>(8)
+  
 
   // Request to API
   useEffect(() => {
-    (async () => {
-      await axios.get(`https://randomuser.me/api/?page=${actualPage > 10 ? setActualPage(1) : actualPage}&results=8&seed=abc`)
-      .then(res => {
-        setUsers(res.data.results)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }) ()
-  }, [actualPage])  
+    const fetchUsers = async () => {
+      setLoading(true)
+      const res = await axios.get(`https://randomuser.me/api/?page=1&results=80&seed=abc`)
+      setUsers(res.data.results)
+      setLoading(false)
+    }
 
-  // Filter search
+    fetchUsers()
+  }, [])  
 
+  const filterSearch = users.filter(user => {
+    if(user.email.includes(filter) || user.login.username.includes(filter) || user.name.first.includes(filter) || user.name.last.includes(filter)) return user
+  })
+
+  // Get current users
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUser = users.slice(indexOfFirstUser, indexOfLastUser)
+  const currentUserFiltered = filterSearch.slice(indexOfFirstUser, indexOfLastUser)
+
+  // Change page
+  const [flag, setFlag] = useState<boolean>(false)
+  const paginate = (pageNumber: number) => {setCurrentPage(pageNumber)}
+
+  useEffect(() => {
+    if(filter) setFlag(true)
+    if(!filter) setFlag(false)
+  }, [filter])
 
   return (
     <>
@@ -54,6 +68,9 @@ const Random = () => {
           <ContainerBox>
             <Title>Random User Generator</Title>
             <WrapSearch>
+              <WrapIconSearch>
+                <SearchIcon sx={{color: 'grey'}}/>
+              </WrapIconSearch>   
               <SearchInput 
                 value={filter} 
                 onChange={e => {
@@ -61,47 +78,26 @@ const Random = () => {
                 }} 
                 placeholder='Find one user'>
               </SearchInput>
-              <ColorButton variant="contained">Search</ColorButton>
             </WrapSearch>
             <WrapBox>
-                {users &&
-                 users
-                 .filter(user => 
-                  user.email.includes(filter) || 
-                  user.login.username.includes(filter) || 
-                  user.name.first.includes(filter) || 
-                  user.name.last.includes(filter)
-                  )
-                 .map((user) => (
-                  <Box>
-                      <PhotoUser src={user.picture.large} />
-                      <WrapInfo>
-                        <Label>Nome</Label>
-                        <InfoLabel>{user.name.first + ' ' + user.name.last}</InfoLabel>
-                      </WrapInfo>
-                      <WrapInfo>
-                        <Label>Email</Label>
-                        <InfoLabel>{user.email}</InfoLabel>
-                      </WrapInfo>
-                       <WrapInfo>
-                        <Label>Username</Label>
-                        <InfoLabel>{user.login.username}</InfoLabel>
-                      </WrapInfo>
-                      <WrapInfo>
-                        <Label>Idade</Label>
-                        <InfoLabel>{user.dob.age}</InfoLabel>
-                      </WrapInfo>
-                  </Box>
-                ))}            
+              {
+                filter ?  
+                  <ShowRandomUsers users={currentUserFiltered} load={loading} filter={filter} /> : 
+                  <ShowRandomUsers users={currentUser} load={loading} filter={filter} />
+              }
             </WrapBox>
             <WrapPagination>
-                {
-                  Array(10).fill('').map((_, index) => {
-                    return <Pagination key={index} onClick={() => setActualPage(index + 1)}>
-                      {index + 1}
-                    </Pagination>
-                  })
-                }
+              {
+                flag ? 
+                <Pagination 
+                  dataPerPage={usersPerPage} 
+                  totalData={filterSearch.length} 
+                  paginate={paginate} /> :
+                <Pagination 
+                  dataPerPage={usersPerPage} 
+                  totalData={users.length} 
+                  paginate={paginate} />
+              }
             </WrapPagination>
           </ContainerBox>
         </Container>

@@ -2,8 +2,21 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import Customer from "../models/Customer";
 
+type Customer = {
+  name: string;
+  email: string;
+  phone: string;
+  cpf: string;
+  adress: string;
+}
+
 const createCustomer = (req: Request, res: Response, next: NextFunction) => {
-  const { name, email, phone, adress, cpf } = req.body;
+  const { name, email, phone, adress, cpf }: Customer = req.body;
+
+  if(!name || !email || !phone || !adress || !cpf) {
+    res.status(400).send('Preencha todos os campos')
+    return
+  }
 
   const customer = new Customer({
     _id: new mongoose.Types.ObjectId(),
@@ -21,11 +34,11 @@ const createCustomer = (req: Request, res: Response, next: NextFunction) => {
 }
 
 const readCustomer = (req: Request, res: Response, next: NextFunction) => {
-  const customerId = req.params.customerId;
+  const customerId: string = req.params.customerId;
 
   return Customer.findById(customerId)
-    .then((customer) => (customer ? 
-    res.status(200).json({ customer }) : 
+    .then((customer) => (customer ?  
+    res.status(200).json( [customer] ) : 
     res.status(404).json({ message: 'Customer not found'})))
     .catch((error) => res.status(500).json({ error }))
 }

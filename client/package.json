@@ -15,12 +15,18 @@
     "@mui/material": "^5.11.3",
     "@mui/styled-engine-sc": "^5.11.0",
     "@mui/system": "^5.11.2",
+    "@types/lodash": "^4.14.191",
+    "@types/react-paginate": "^7.1.1",
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-table": "^7.7.14",
     "axios": "^1.2.2",
+    "lodash": "^4.17.21",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.6.1"
+    "react-paginate": "^8.1.4",
+    "react-router-dom": "^6.6.1",
+    "react-table": "^7.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

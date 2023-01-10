@@ -4,7 +4,8 @@ import { Customer } from '../interfaces/typeCustomer';
 
 type CustomerContextType = {
   allCustomers: Customer[];
-  setAllCustomers: React.Dispatch<React.SetStateAction<Customer[]>>
+  setAllCustomers: React.Dispatch<React.SetStateAction<Customer[]>>;
+  loading: boolean;
 }
 
 type CustomerContextProps = {
@@ -16,18 +17,20 @@ const CustomersContext = createContext({} as CustomerContextType)
 export const CustomersProvider = ({children}: CustomerContextProps) => {
 
   const [allCustomers, setAllCustomers] = useState<Customer[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
-    axios.get('http://localhost:9090/customers/get')
-    .then(res => {
+    const fetchCustomers = async () => {
+      setLoading(true)
+      const res = await axios.get('http://localhost:9090/customers/get')
       setAllCustomers(res.data)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+      setLoading(false)
+    }
+
+    fetchCustomers()
   }, [])
 
-  return <CustomersContext.Provider value={{allCustomers, setAllCustomers}}>{children}</CustomersContext.Provider>
+  return <CustomersContext.Provider value={{allCustomers, setAllCustomers, loading}}>{children}</CustomersContext.Provider>
 }
 
 export default CustomersContext;
