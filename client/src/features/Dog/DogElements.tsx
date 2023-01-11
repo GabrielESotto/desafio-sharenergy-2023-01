@@ -1,19 +1,12 @@
 import styled from 'styled-components'
-import bgLogo from '../../assets/images/bgHome.jpeg'
 import { styled as styling } from '@mui/material/styles'
 import { green } from '@mui/material/colors'
 import Button, { ButtonProps } from '@mui/material/Button'
 
-export const Background = styled.div`
-  width: 100%;
-  height: 925px;
-  background-image: url(${bgLogo});
-  background-size: cover
-`
-
 export const Container = styled.div`
   max-width: 900px;
-  height: 600px;
+  height: 100%;
+  max-height: 600px;
   background-color: #f5faf0;
   margin: 0 auto;
   border-radius: 10px;
@@ -66,18 +59,17 @@ export const ColorButton = styling(Button)<ButtonProps>(({ theme }) => ({
 export const DivImg = styled.img`
   width: 300px;
   height: 300px;
-  margin: 0 auto;
+  margin: 30px auto 100px auto;
 ` 
 
 export const DivVideo = styled.video`
   width: 300px;
   height: 300px;
-  margin: 0 auto;
+  margin: 30px auto 100px auto;
 ` 
 
-export const InitialDog = styled.p`
-  font-size: 30px; 
-  text-align: center;
-  margin-top: 100px;
-
+export const ImgClick = styled.img`
+  width: 150px;
+  height: 200px;
+  margin: 30px auto 100px auto;
 `

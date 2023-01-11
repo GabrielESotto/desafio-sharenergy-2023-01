@@ -15,7 +15,6 @@ import SnackbarAlert from '../../components/Snackbar/SnackbarAlert'
 import Pagination from '../../components/Pagination/Pagination';
 import { TitleDog as Title } from '../Dog/DogElements'
 import { 
-  Background, 
   WrapRight, 
   Container, 
   WrapItems, 
@@ -77,24 +76,23 @@ const Customers = () => {
   return (
     <>
       <Global />
-      <Background>
-        <Header />
-          <Container>
-            <WrapItems>
-              <Title>Customers</Title>
-              <ContentBox>
-                <WrapRight>
-                  <BtnCreate onClick={handleModal}>New Customer <AddIcon sx={{marginLeft: '10px'}} /></BtnCreate>
-                </WrapRight>
-                {/* ShowCustomers component to render customers */}
-                <ShowCustomers customers={currentCustomer} load={loading} />  
-                <Pagination dataPerPage={customersPerPage} totalData={allCustomers.length} paginate={paginate}/> 
-                <Modal isOpen={open} ocModal={handleModal} btn='Create' titleModal='Create a new customer' submit={handleCreateSubmit} whichModal={whichModal} />    
-                <SnackbarAlert openSnack={openSnackbar} closeSnack={handleCloseSnackbar} message={catchMessage} />
-              </ContentBox>
-            </WrapItems>
-          </Container>
-      </Background>
+      <Header />
+        <Container>
+          <WrapItems>
+            <Title>Customers</Title>
+            <ContentBox>
+              <WrapRight>
+                <BtnCreate onClick={handleModal}>New Customer <AddIcon sx={{marginLeft: '10px'}} /></BtnCreate>
+              </WrapRight>
+              {/* ShowCustomers component to render customers */}
+              <ShowCustomers customers={currentCustomer} load={loading} />  
+              <Pagination dataPerPage={customersPerPage} totalData={allCustomers.length} paginate={paginate}/> 
+              <Modal isOpen={open} ocModal={handleModal} btn='Create' titleModal='Create a new customer' submit={handleCreateSubmit} whichModal={whichModal} />    
+              <SnackbarAlert openSnack={openSnackbar} closeSnack={handleCloseSnackbar} message={catchMessage} />
+            </ContentBox>
+          </WrapItems>
+        </Container>
+        <br></br>
     </>
    
   )

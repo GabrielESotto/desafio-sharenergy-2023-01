@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import bgLogo from '../../assets/images/bgHome.jpeg'
-
 
 export const Container = styled.div`
   max-width: 1700px;
@@ -35,13 +33,6 @@ export const Container = styled.div`
   @media screen and (max-width: 500px) {
     max-width: 350px;
   }
-`
-
-export const Background = styled.div`
-  width: 100%;
-  height: 925px;
-  background-image: url(${bgLogo});
-  background-size: cover
 `
 
 export const WrapItems = styled.div`

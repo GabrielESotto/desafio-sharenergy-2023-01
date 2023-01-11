@@ -35,7 +35,13 @@ const NavMobile = () => {
   return (
     <div>
       <Button
-        sx={{color: 'black'}}
+        sx={{
+          color: 'black', 
+          marginBottom: '5px',
+          '@media screen and (max-width: 500px)': {
+            marginBottom: '20px'
+          }
+        }}
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"

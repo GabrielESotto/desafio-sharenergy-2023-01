@@ -12,7 +12,6 @@ import Pagination from '../../components/Pagination/Pagination'
 import ShowRandomUsers from '../../components/ShowRandomUsers/ShowRandomUsers'
 import { Result } from '../../interfaces/types'
 import {
-  Background,
   Container,
   Title,
   ContainerBox,
@@ -81,58 +80,56 @@ const Random = () => {
 
   return (
     <>
-      <Global />
-      <Background>
-        <Header />
-        <Container>
-          <ContainerBox>
-            <Title>Random User Generator</Title>
-            <WrapSearch>
-              <WrapIconSearch>
-                <SearchIcon sx={{color: 'grey'}}/>
-              </WrapIconSearch>   
-              <SearchInput 
-                value={filter} 
-                onChange={e => {
-                  setFilter(e.target.value)
-                }} 
-                placeholder='Find one user'>
-              </SearchInput>
-            </WrapSearch>
-            <WrapBox>
-              {filter ? (
-                <ShowRandomUsers 
-                  users={currentUserFiltered} 
-                  load={loading} 
-                  filter={filter} 
-                />
-              ) : (
-                <ShowRandomUsers 
-                  users={currentUser} 
-                  load={loading} 
-                  filter={filter} 
-                />
-              )}
-            </WrapBox>
-            <WrapPagination>
-              {flag ? (
-                <Pagination 
-                  dataPerPage={usersPerPage} 
-                  totalData={filterSearch.length} 
-                  paginate={paginate} 
-                /> 
-              ) : (
-                <Pagination 
-                  dataPerPage={usersPerPage} 
-                  totalData={users.length} 
-                  paginate={paginate} 
-                />
-              )}
-            </WrapPagination>
-          </ContainerBox>
-        </Container>
-        <br></br>
-      </Background>
+    <Global />
+      <Header />
+      <Container>
+        <ContainerBox>
+          <Title>Random User Generator</Title>
+          <WrapSearch>
+            <WrapIconSearch>
+              <SearchIcon sx={{color: 'grey'}}/>
+            </WrapIconSearch>   
+            <SearchInput 
+              value={filter} 
+              onChange={e => {
+                setFilter(e.target.value)
+              }} 
+              placeholder='Find one user'>
+            </SearchInput>
+          </WrapSearch>
+          <WrapBox>
+            {filter ? (
+              <ShowRandomUsers 
+                users={currentUserFiltered} 
+                load={loading} 
+                filter={filter} 
+              />
+            ) : (
+              <ShowRandomUsers 
+                users={currentUser} 
+                load={loading} 
+                filter={filter} 
+              />
+            )}
+          </WrapBox>
+          <WrapPagination>
+            {flag ? (
+              <Pagination 
+                dataPerPage={usersPerPage} 
+                totalData={filterSearch.length} 
+                paginate={paginate} 
+              /> 
+            ) : (
+              <Pagination 
+                dataPerPage={usersPerPage} 
+                totalData={users.length} 
+                paginate={paginate} 
+              />
+            )}
+          </WrapPagination>
+        </ContainerBox>
+      </Container>
+      <br></br>
     </>
   )
 }

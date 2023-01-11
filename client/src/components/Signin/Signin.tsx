@@ -57,41 +57,41 @@ const Signin = () => {
   }
 
   return <>
-  <ContentDiv>
-    <ContainerTitle>Login</ContainerTitle>
-    <ContainerForm>
-      <Box>
-        <Label>Username</Label>
-        <InputEmail 
-          value={username} 
-          onChange={e => setUsername(e.target.value)}
+    <ContentDiv>
+      <ContainerTitle>Login</ContainerTitle>
+      <ContainerForm>
+        <Box>
+          <Label>Username</Label>
+          <InputEmail 
+            value={username} 
+            onChange={e => setUsername(e.target.value)}
+          />
+        </Box>
+        <Box>
+          <Label>Password</Label>
+          <InputPassword 
+            type='password' 
+            value={password} 
+            onChange={e => setPassword(e.target.value)} 
+          />
+          <RememberBox>
+            <RememberMe type='checkbox' />
+            <SpanRm>Remember Me?</SpanRm>
+          </RememberBox>
+        </Box>
+        <ColorButton 
+          onClick={handleFullSubmit} 
+          variant="contained"
+        >
+          Login
+        </ColorButton>
+        <SnackbarAlert 
+          openSnack={openSnackbar} 
+          closeSnack={handleCloseSnackbar}
+          message={catchMessage}
         />
-      </Box>
-      <Box>
-        <Label>Password</Label>
-        <InputPassword 
-          type='password' 
-          value={password} 
-          onChange={e => setPassword(e.target.value)} 
-        />
-        <RememberBox>
-          <RememberMe type='checkbox' />
-          <SpanRm>Remember Me?</SpanRm>
-        </RememberBox>
-      </Box>
-      <ColorButton 
-        onClick={handleFullSubmit} 
-        variant="contained"
-      >
-        Login
-      </ColorButton>
-      <SnackbarAlert 
-        openSnack={openSnackbar} 
-        closeSnack={handleCloseSnackbar}
-        message={catchMessage}
-      />
-    </ContainerForm>
-  </ContentDiv>
+      </ContainerForm>
+    </ContentDiv>
   </>
 }
 

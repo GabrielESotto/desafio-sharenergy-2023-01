@@ -7,16 +7,16 @@ import axios from 'axios'
 // Internos
 import Global from '../../assets/styles/global'
 import Header from '../../components/Header/Header'
+import clickHereImg from '../../assets/images/png.png'
 import DivLoading from '../../components/DivLoading/DivLoading'
 import {
-  Background,
   Container,
   TitleDog,
   WrapItems,
   ColorButton,
   DivImg,
   DivVideo,
-  InitialDog
+  ImgClick
 } from './DogElements'
 
 
@@ -56,6 +56,8 @@ const Dog = () => {
 
   }
 
+  console.log(randomDog)
+
   // Render loading gif
   if(loading) {
     return <DivLoading />
@@ -64,29 +66,28 @@ const Dog = () => {
   return (
     <>
       <Global />
-      <Background>
-        <Header />
-        <Container>
-          <WrapItems>
-            <TitleDog>Random Dog</TitleDog>
-            <ColorButton onClick={handleRefresh} variant="contained">
-              Refresh Image
-            </ColorButton>
-            {randomDog.includes('.mp4') || randomDog.includes('.gif') || randomDog.includes('.webm') ? (
-              randomDog ? (
-                <DivVideo autoPlay src={`http://random.dog/${randomDog}`}/> 
-              ) : (
-                <InitialDog>Press the button to see one dog</InitialDog>
-              )) : (
-              randomDog ? (
-                <DivImg src={`http://random.dog/${randomDog}`} /> 
-              ) : (
-                <InitialDog>Press the button to see one dog</InitialDog>
-              )
-            )}
-          </WrapItems>
-        </Container>
-      </Background>
+      <Header />
+      <Container>
+        <WrapItems>
+          <TitleDog>Random Dog</TitleDog>
+          <ColorButton onClick={handleRefresh} variant="contained">
+            Refresh Image
+          </ColorButton>
+          {randomDog.includes('.mp4') || randomDog.includes('.webm') ? (
+            randomDog ? (
+              <DivVideo autoPlay src={`http://random.dog/${randomDog}`}/> 
+            ) : (
+              <ImgClick src={clickHereImg} />
+            )) : (
+            randomDog ? (
+              <DivImg src={`http://random.dog/${randomDog}`} /> 
+            ) : (
+              <ImgClick src={clickHereImg} />
+            )
+          )}
+        </WrapItems>
+      </Container>
+      <br></br>
     </>
   )
 }

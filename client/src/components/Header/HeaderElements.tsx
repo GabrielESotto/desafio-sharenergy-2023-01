@@ -6,6 +6,29 @@ export const ImgLogo = styled.img `
   height: 30px;
   cursor: pointer;
   margin-top: 20px;
+
+  @media screen and (max-width: 500px) {
+    width: 170px;
+    height: 20px;
+  }
+`
+
+export const HomeLogoNoUser = styled.div`
+  width: 240px;
+  height: 100px;
+  margin: 20px 0 0 70px;
+  
+  @media screen and (max-width: 650px) {
+    width: 100%;
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
+  }
+
+  @media screen and (max-width: 500px) {
+
+  }
 `
 
 export const HomeLogo = styled.div`

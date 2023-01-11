@@ -9,7 +9,7 @@ import GetCustomerContext from "../../contexts/GetCustomerContext"
 import Global from "../../assets/styles/global"
 import Header from "../../components/Header/Header"
 import DivLoading from "../../components/DivLoading/DivLoading"
-import { Background, Container } from "../Dog/DogElements"
+import { Container } from "../Dog/DogElements"
 import { 
   DivInfo, 
   TextInfo, 
@@ -47,7 +47,6 @@ const Customer = () => {
   return (
     <>
       <Global />
-      <Background>
         <Header />
         <Container>
           <WrapItems>
@@ -91,7 +90,7 @@ const Customer = () => {
             </WrapArrow>
           </WrapItems>
         </Container>
-      </Background>
+        <br></br>
     </>
   )
 }

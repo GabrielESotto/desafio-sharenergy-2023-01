@@ -6,19 +6,18 @@
 import Header from '../../components/Header/Header'
 import Signin from '../../components/Signin/Signin'
 import Global from '../../assets/styles/global'
-import { HomeBg, HomeContainer } from './HomeElements'
+import { HomeContainer } from './HomeElements'
 
 
 const Home = () => {
   return (
     <>
       <Global />
-      <HomeBg>
-        <Header />
-        <HomeContainer>
-          <Signin />
-        </HomeContainer>
-      </HomeBg>
+      <Header />
+      <HomeContainer>
+        <Signin />
+      </HomeContainer>  
+      <br></br>
     </>
 
   )

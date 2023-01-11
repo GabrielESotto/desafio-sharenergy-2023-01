@@ -13,7 +13,7 @@ export const ContentDiv = styled.div`
 export const ContainerTitle = styled.h1`
   text-align: center;
   margin-top: 110px;
-  font-size: 27px;
+  font-size: 21px;
   font-weight: lighter;
 `
 

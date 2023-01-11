@@ -15,7 +15,8 @@ import {
   NavLink,
   NavBar,
   Wrap,
-  ImgLogo
+  ImgLogo,
+  HomeLogoNoUser
  } from './HeaderElements'
 
  
@@ -30,10 +31,16 @@ const Header = () => {
 
   return <>
     <NavBar>
-      <HomeLogo>
-        <ImgLogo onClick={redirectHome} src={imageLogo} />
-      </HomeLogo>
-      {user === null || !user ? null : (
+      {user === 'null' || !user ? (
+        <HomeLogoNoUser>
+          <ImgLogo onClick={redirectHome} src={imageLogo} />
+        </HomeLogoNoUser>
+      ) : (
+        <HomeLogo>
+          <ImgLogo onClick={redirectHome} src={imageLogo} />
+        </HomeLogo>
+      )}
+      {user === 'null' || !user ? null : (
       <Ulist>
         <NavLink to='/random'>Random User</NavLink>
         <NavLink to='/cat'>HTTP Cat</NavLink>

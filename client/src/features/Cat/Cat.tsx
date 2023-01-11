@@ -7,9 +7,8 @@ import axios from 'axios'
 // Internos
 import Global from '../../assets/styles/global'
 import Header from '../../components/Header/Header'
-import {Container, WrapItems} from '../Dog/DogElements'
+import { Container, WrapItems } from '../Dog/DogElements'
 import { 
-  Background, 
   Select, 
   Option, 
   ImgCat, 
@@ -56,32 +55,31 @@ const Cat = () => {
   return (
     <>
       <Global />
-      <Background>
-        <Header />
-        <Container>
-          <WrapItems>
-            <TitleCat>HTTP Status Cat</TitleCat>
-            <SubTitle>Choose a HTTP Status and receive a CAT image</SubTitle>
-            <Select 
-              onChange={e => setChosenCode(e.target.value)} 
-              name="https" 
-              id="https"
-            >
-              <Option id='first'>Select one code</Option>
-              {httpStatus.map(oneStatus => {
-                return <Option key={oneStatus} value={oneStatus}>
-                  {oneStatus}
-                </Option>
-              })}
-            </Select>
-            {!chosenCode || chosenCode === 'Select one code' ? (
-              <Img404 /> 
-            ) : (
-              <ImgCat src={photo}/>
-            )}
-          </WrapItems>
-        </Container>
-      </Background>
+      <Header />
+      <Container>
+        <WrapItems>
+          <TitleCat>HTTP Status Cat</TitleCat>
+          <SubTitle>Choose a HTTP Status and receive a CAT image</SubTitle>
+          <Select 
+            onChange={e => setChosenCode(e.target.value)} 
+            name="https" 
+            id="https"
+          >
+            <Option id='first'>Select one code</Option>
+            {httpStatus.map(oneStatus => {
+              return <Option key={oneStatus} value={oneStatus}>
+                {oneStatus}
+              </Option>
+            })}
+          </Select>
+          {!chosenCode || chosenCode === 'Select one code' ? (
+            <Img404 /> 
+          ) : (
+            <ImgCat src={photo}/>
+          )}
+        </WrapItems>
+      </Container>
+      <br></br>
     </>
   )
 }

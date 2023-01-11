@@ -1,13 +1,4 @@
 import styled from 'styled-components'
-import imageBg from '../../assets/images/bgHome.jpeg'
-
-export const HomeBg = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  background-image: url(${imageBg});
-  background-size: cover;
-`
 
 export const HomeContainer = styled.div`
   background-color: #f5faf0;

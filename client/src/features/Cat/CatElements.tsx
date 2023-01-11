@@ -1,17 +1,10 @@
 import styled from 'styled-components'
-import bgLogo from '../../assets/images/bgHome.jpeg'
 import pgNotFound from '../../assets/images/pagenotfound.jpg'
-
-export const Background = styled.div`
-  width: 100%;
-  height: 925px;
-  background-image: url(${bgLogo});
-  background-size: cover
-`
 
 export const TitleCat = styled.h1`
   text-align: center;
   margin-top: 30px;
+  font-size: 21px;
 `
 
 export const SubTitle = styled.p`

@@ -1,15 +1,7 @@
 import styled from "styled-components";
-import bgLogo from '../../assets/images/bgHome.jpeg'
 import { styled as styling } from '@mui/material/styles'
 import { green } from '@mui/material/colors'
 import Button, { ButtonProps } from '@mui/material/Button'
-
-export const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  background-image: url(${bgLogo});
-  background-size: cover
-`
 
 export const Container = styled.div`
   max-width: 1800px;
@@ -46,6 +38,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
   text-align: center;
   margin-top: 30px;
+  font-size: 21px;
 `
 
 export const ContainerBox = styled.div`
