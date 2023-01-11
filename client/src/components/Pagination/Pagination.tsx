@@ -1,3 +1,8 @@
+// Built-in
+
+// Externos
+
+// Internos
 import { UlWrap, List, NavLink } from './PaginationElements'
 
 type Props = {
@@ -7,8 +12,8 @@ type Props = {
 }
 
 const Pagination = ({ dataPerPage, totalData, paginate }: Props) => {
+  
   const pageNumbers = [];
-
   for (let i = 1; i <= Math.ceil(totalData / dataPerPage); i++) {
     pageNumbers.push(i)
   }

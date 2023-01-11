@@ -1,12 +1,18 @@
-import {useState} from 'react'
+// Built-in
+
+// Externos
+
+// Internos
 import { Result } from '../../interfaces/types';
+import DivLoading from '../DivLoading/DivLoading';
 import {
   Box,
   PhotoUser,
   WrapInfo,
   Label,
   InfoLabel
-} from './ShowRandomUserElements'
+} from './ShowRandomUsersElements'
+
 
 type Props = {
   users: Result[];
@@ -16,10 +22,11 @@ type Props = {
 
 const ShowRandomUsers = ({users, load, filter}: Props) => {
 
+  // Render loading gif
   if(load) {
-    return <h2>Loading...</h2>
+    return <DivLoading />
   }
- 
+
   return (
     <>
       {users &&
@@ -35,7 +42,7 @@ const ShowRandomUsers = ({users, load, filter}: Props) => {
             <PhotoUser src={user.picture.large} />
             <WrapInfo>
               <Label>Nome</Label>
-              <InfoLabel>{user.name.first + ' ' + user.name.last}</InfoLabel>
+              <InfoLabel>{`${user.name.first} ${user.name.last}`}</InfoLabel>
             </WrapInfo>
             <WrapInfo>
               <Label>Email</Label>

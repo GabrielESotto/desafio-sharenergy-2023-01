@@ -1,6 +1,12 @@
+// Built-in
 import { createContext, useEffect, useState, ReactNode } from 'react'
+
+// Externos
 import axios from 'axios'
+
+// Internos
 import { Customer } from '../interfaces/typeCustomer';
+
 
 type CustomerContextType = {
   allCustomers: Customer[];
@@ -16,9 +22,11 @@ const CustomersContext = createContext({} as CustomerContextType)
 
 export const CustomersProvider = ({children}: CustomerContextProps) => {
 
+  // States for this context
   const [allCustomers, setAllCustomers] = useState<Customer[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
+  // Request API to get all customers
   useEffect(() => {
     const fetchCustomers = async () => {
       setLoading(true)

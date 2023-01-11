@@ -1,22 +1,48 @@
+// Built-in
+import { useContext, useEffect} from 'react'
+
+// Externos
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+// Internos
+import GetCustomerContext from "../../contexts/GetCustomerContext"
 import Global from "../../assets/styles/global"
 import Header from "../../components/Header/Header"
-import { useContext, useEffect} from 'react'
-import GetCustomerContext from "../../contexts/GetCustomerContext"
+import DivLoading from "../../components/DivLoading/DivLoading"
 import { Background, Container } from "../Dog/DogElements"
-import { DivInfo, TextInfo, LabelInfo, Title, WrapItems } from './CustomerElements'
+import { 
+  DivInfo, 
+  TextInfo, 
+  LabelInfo, 
+  Title, 
+  WrapItems, 
+  WrapArrow 
+} from './CustomerElements'
+
 
 const Customer = () => {
 
-  const { dataCustomer, getSpecifyCustomer } = useContext(GetCustomerContext)
+  // States and Function to Specify Customer
+  const { dataCustomer, getSpecifyCustomer, loading } = useContext(GetCustomerContext)
 
-  const atualUrl = window.location.href
-  const sliceUrl = atualUrl.slice(32, )
+  // Consts to get current URL
+  const currentUrl = window.location.href
+  const sliceUrl = currentUrl.slice(32, )
 
+  // Request API to get a specify customer
   useEffect(() => {
     getSpecifyCustomer(sliceUrl)
   }, [])
 
-  console.log(dataCustomer)
+  // Function to redirect to previous page
+  const goBackOnePage = () => {
+      window.history.back()
+  }
+
+  // Render loading gif
+  if(loading) {
+    return <DivLoading />
+  }
 
   return (
     <>
@@ -54,6 +80,15 @@ const Customer = () => {
                 </DivInfo>
               </>
             ))}
+            <WrapArrow>
+              <ArrowBackIcon 
+                onClick={goBackOnePage} 
+                sx={{
+                  marginBottom: '10px', 
+                  cursor: 'pointer',
+                  '&:hover': {color: 'grey', transition: '0.2s ease-in'}
+                }} />
+            </WrapArrow>
           </WrapItems>
         </Container>
       </Background>

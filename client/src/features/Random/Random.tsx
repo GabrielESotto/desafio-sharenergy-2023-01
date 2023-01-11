@@ -1,10 +1,16 @@
+// Built-in
+import { useState, useEffect } from 'react'
+
+// Externos
+import axios from 'axios'
+import SearchIcon from '@mui/icons-material/Search';
+
+// Internos
 import Header from '../../components/Header/Header'
 import Global from '../../assets/styles/global'
-import axios from 'axios'
-import { Result } from '../../interfaces/types'
-import { useState, useEffect } from 'react'
 import Pagination from '../../components/Pagination/Pagination'
-import SearchIcon from '@mui/icons-material/Search';
+import ShowRandomUsers from '../../components/ShowRandomUsers/ShowRandomUsers'
+import { Result } from '../../interfaces/types'
 import {
   Background,
   Container,
@@ -16,7 +22,7 @@ import {
   WrapSearch,
   WrapIconSearch
 } from './RandomElements'
-import ShowRandomUsers from '../../components/ShowRandomUsers/ShowRandomUsers'
+
 
 const Random = () => {
 
@@ -28,7 +34,7 @@ const Random = () => {
   const [usersPerPage] = useState<number>(8)
   
 
-  // Request to API
+  // Request API to get Random Users
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true)
@@ -40,8 +46,14 @@ const Random = () => {
     fetchUsers()
   }, [])  
 
+
+  // Function to filter random users by username, email and full name
   const filterSearch = users.filter(user => {
-    if(user.email.includes(filter) || user.login.username.includes(filter) || user.name.first.includes(filter) || user.name.last.includes(filter)) return user
+    if(user.email.includes(filter) || 
+    user.login.username.includes(filter) || 
+    user.name.first.includes(filter) || 
+    user.name.last.includes(filter)) 
+    return user
   })
 
   // Get current users
@@ -54,9 +66,17 @@ const Random = () => {
   const [flag, setFlag] = useState<boolean>(false)
   const paginate = (pageNumber: number) => {setCurrentPage(pageNumber)}
 
+  // Flag for jsx
   useEffect(() => {
     if(filter) setFlag(true)
     if(!filter) setFlag(false)
+  }, [filter])
+
+  // Solving problem with render when filter
+  useEffect(() => {
+    if(filter) {
+      setCurrentPage(1)
+    }
   }, [filter])
 
   return (
@@ -80,24 +100,34 @@ const Random = () => {
               </SearchInput>
             </WrapSearch>
             <WrapBox>
-              {
-                filter ?  
-                  <ShowRandomUsers users={currentUserFiltered} load={loading} filter={filter} /> : 
-                  <ShowRandomUsers users={currentUser} load={loading} filter={filter} />
-              }
+              {filter ? (
+                <ShowRandomUsers 
+                  users={currentUserFiltered} 
+                  load={loading} 
+                  filter={filter} 
+                />
+              ) : (
+                <ShowRandomUsers 
+                  users={currentUser} 
+                  load={loading} 
+                  filter={filter} 
+                />
+              )}
             </WrapBox>
             <WrapPagination>
-              {
-                flag ? 
+              {flag ? (
                 <Pagination 
                   dataPerPage={usersPerPage} 
                   totalData={filterSearch.length} 
-                  paginate={paginate} /> :
+                  paginate={paginate} 
+                /> 
+              ) : (
                 <Pagination 
                   dataPerPage={usersPerPage} 
                   totalData={users.length} 
-                  paginate={paginate} />
-              }
+                  paginate={paginate} 
+                />
+              )}
             </WrapPagination>
           </ContainerBox>
         </Container>

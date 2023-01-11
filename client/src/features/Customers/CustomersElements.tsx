@@ -4,18 +4,42 @@ import bgLogo from '../../assets/images/bgHome.jpeg'
 
 export const Container = styled.div`
   max-width: 1700px;
-  height: 800px;
+  height: 700px;
   background-color: #f5faf0;
   margin: 0 auto 40px auto;
   border-radius: 10px;
   -webkit-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   -moz-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   box-shadow: 3px 3px 16px 4px #585858be;
+
+  @media screen and (max-width: 1750px) {
+    max-width: 1300px;
+  }
+
+  @media screen and (max-width: 1350px) {
+    max-width: 1000px;
+  }
+
+  @media screen and (max-width: 1050px) {
+    max-width: 780px;
+  }
+
+  @media screen and (max-width: 800px) {
+    max-width: 600px;
+  }
+
+  @media screen and (max-width: 620px) {
+    max-width: 470px;
+  }
+
+  @media screen and (max-width: 500px) {
+    max-width: 350px;
+  }
 `
 
 export const Background = styled.div`
   width: 100%;
-  height: 100%;
+  height: 925px;
   background-image: url(${bgLogo});
   background-size: cover
 `
@@ -30,7 +54,26 @@ export const ContentBox = styled.div`
   margin: 30px auto 0px auto;
   width: 100%;
   max-width: 1500px;
-  height: 500px;
+  height: 100%;
+  max-height: 500px;
+
+  @media screen and (max-width: 1750px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 1050px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 550px) {
+    margin: 0 auto;
+    width: 98%;
+  }
 `
 
 export const BtnCreate = styled.button`

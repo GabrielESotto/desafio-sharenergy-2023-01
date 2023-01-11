@@ -1,17 +1,21 @@
 import styled from 'styled-components'
-import imageLogo from '../../assets/images/logo_color.png'
 import { Link } from 'react-router-dom'
+
+export const ImgLogo = styled.img `
+  width: 240px;
+  height: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+`
 
 export const HomeLogo = styled.div`
   width: 240px;
-  height: 110px;
-  background-image: url(${imageLogo});
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin: 40px 0 0 70px;
-
+  height: 100px;
+  margin: 20px 0 0 70px;
+  
   @media screen and (max-width: 650px) {
-    margin: 40px auto;
+    width: 150px;
+    height: 85px;
   }
 `
 
@@ -25,7 +29,6 @@ export const Ulist = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: -40px;
   margin-right: 70px;
 `
 
@@ -34,5 +37,29 @@ export const NavLink = styled(Link)`
   list-style: none;
   text-decoration: none;
   color: black;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.2s ease-in;
+
+  &:hover{
+    transition: 0.2s ease-in;
+    color: #4eaa6b;
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+`
+
+export const Wrap = styled.div`
+  display: none;
+
+  @media screen and (max-width: 1200px) {
+    display: inline;
+  }
+
+  @media screen and (max-width: 650px) {
+    margin-top: 13px;
+  }
 `

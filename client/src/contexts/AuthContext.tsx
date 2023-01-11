@@ -1,6 +1,12 @@
-import { createContext, useMemo, ReactNode, useState } from 'react'
+// Built-in
+import { createContext, useMemo, ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+// Externos
+
+// Internos
 import { useLocalStorage } from '../hooks/useLocalStorage'
+
 
 type AuthContextProps = {
   children?: ReactNode | undefined;
@@ -20,18 +26,21 @@ type AuthContextType = {
 const AuthContext = createContext({} as AuthContextType)
 
 export const AuthProvider = ({children}: AuthContextProps) => {
+  // Using Local Storage
   const [user, setUser] = useLocalStorage('user', null)
+
   const navigate = useNavigate()
 
+  // Login function
   const login = async (data: Data) => {
     await setUser(data)
     setTimeout(() => {
-      navigate('/logged')
+      navigate('/random')
       window.location.reload()
     })
-    
   }
 
+  // Logout function
   const logout = async () => {
     window.localStorage.clear()
     setTimeout(() => {
@@ -40,6 +49,7 @@ export const AuthProvider = ({children}: AuthContextProps) => {
     })
   }
 
+  // Values of context
   const value = useMemo(
     () => ({
       user,

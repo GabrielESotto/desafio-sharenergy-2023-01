@@ -20,6 +20,27 @@ export const Container = styled.div`
   -webkit-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   -moz-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   box-shadow: 3px 3px 16px 4px #585858be;
+
+  @media screen and (max-width: 1850px) {
+    max-width: 1200px;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1050px) {
+    max-width: 800px;
+  }
+
+  @media screen and (max-width: 780px) {
+    max-width: 550px;
+  }
+
+  @media screen and (max-width: 550px) {
+    max-width: 400px;
+  }
+
+  @media screen and (max-width: 450px) {
+    max-width: 330px;
+  }
 `
 
 export const Title = styled.h1`
@@ -62,6 +83,11 @@ export const WrapPagination = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: -15px;
+
+  @media screen and (max-width: 1850px) {
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
 `
 
 export const Pagination = styled.button`

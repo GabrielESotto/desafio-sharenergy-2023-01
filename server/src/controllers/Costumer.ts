@@ -12,9 +12,30 @@ type Customer = {
 
 const createCustomer = (req: Request, res: Response, next: NextFunction) => {
   const { name, email, phone, adress, cpf }: Customer = req.body;
+  const emailTest = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
 
   if(!name || !email || !phone || !adress || !cpf) {
     res.status(400).send('Preencha todos os campos')
+    return
+  }
+
+  if(name.length < 3 || name.length > 30) {
+    res.status(400).send('Nome deve ter entre 3 e 30 caracteres')
+    return
+  }
+
+  if(!emailTest.test(email)) {
+    res.status(400).send('Insira um email valido')
+    return
+  }
+
+  if(cpf.length !== 11) {
+    res.status(400).send('CPF deve conter 11 digitos')
+    return
+  }
+
+  if(adress.length <= 4) {
+    res.status(400).send('Endereço deve ter pelo menos 5 caracteres')
     return
   }
 

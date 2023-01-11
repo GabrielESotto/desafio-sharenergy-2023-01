@@ -6,7 +6,7 @@ import Button, { ButtonProps } from '@mui/material/Button'
 
 export const Background = styled.div`
   width: 100%;
-  height: 930px;
+  height: 925px;
   background-image: url(${bgLogo});
   background-size: cover
 `
@@ -20,6 +20,18 @@ export const Container = styled.div`
   -webkit-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   -moz-box-shadow: 3px 3px 16px 4px rgba(92,92,92,1);
   box-shadow: 3px 3px 16px 4px #585858be;
+
+  @media screen and (max-width: 920px) {
+    max-width: 600px;
+  }
+
+  @media screen and (max-width: 620px) {
+    max-width: 400px;
+  }
+
+  @media screen and (max-width: 450px) {
+    max-width: 350px;
+  }
 `
 
 export const WrapItems = styled.div`
@@ -30,6 +42,7 @@ export const WrapItems = styled.div`
 
 export const TitleDog = styled.h1`
   text-align: center;
+  font-size: 21px;
   margin-top: 30px;
 `
 

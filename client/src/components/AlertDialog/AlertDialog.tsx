@@ -1,9 +1,16 @@
+// Built-in
+
+// Externos
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+
+// Internos
+
+
 
 type AlertProps = {
   openAlert: boolean;
@@ -12,6 +19,13 @@ type AlertProps = {
 }
 
 const AlertDialog = ({openAlert, handleClose, handleDelete}: AlertProps) => {
+
+  // Executa duas funções em uma pra ser usada no Jsx
+  const execFunctions = () => {
+    handleClose()
+    handleDelete()
+  }
+
   return (
     <>
       <Dialog
@@ -30,10 +44,7 @@ const AlertDialog = ({openAlert, handleClose, handleDelete}: AlertProps) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>
-          <Button onClick={() => {
-            handleClose()
-            handleDelete()
-          }} autoFocus>
+          <Button onClick={execFunctions} autoFocus>
             Yes
           </Button>
         </DialogActions>

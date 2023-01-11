@@ -1,11 +1,8 @@
-import {useContext, useState} from 'react'
-import Modal from '../Modal/Modal'
-import UpdateCustomerContext from '../../contexts/UpdateCustomerContext'
-import CreateCustomerContext from '../../contexts/CreateCustomerContext'
-import DeleteCustomerContext from '../../contexts/DeleteCustomerContext'
-import AlertDialog from '../AlertDialog/AlertDialog'
-import SnackbarAlert from '../Snackbar/SnackbarAlert'
+// Built-in
+import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react'
 
+// Externos
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import UpdateIcon from '@mui/icons-material/Update';
@@ -18,8 +15,16 @@ import {
   TableCell, 
   Paper, 
 } from '@mui/material'
+
+// Internos
 import GetCustomerContext from '../../contexts/GetCustomerContext';
-import { useNavigate } from 'react-router-dom';
+import UpdateCustomerContext from '../../contexts/UpdateCustomerContext'
+import CreateCustomerContext from '../../contexts/CreateCustomerContext'
+import DeleteCustomerContext from '../../contexts/DeleteCustomerContext'
+import DivLoading from '../DivLoading/DivLoading'
+import Modal from '../Modal/Modal'
+import AlertDialog from '../AlertDialog/AlertDialog'
+import SnackbarAlert from '../Snackbar/SnackbarAlert'
 import { Customer } from '../../interfaces/typeCustomer';
 
 type Props = {
@@ -29,11 +34,13 @@ type Props = {
 
 const ShowCustomers = ({customers, load}: Props) => {
 
+  // Contexts of Customers, Functions and States
   const { getOneCustomer } = useContext(UpdateCustomerContext)
   const { catchMessage } = useContext(CreateCustomerContext)
   const { deleteOneCustomer } = useContext(DeleteCustomerContext)
   const { getSpecifyCustomer } = useContext(GetCustomerContext)
 
+  // States for contexts, modals, snackbar and alert.
   const [id, setId] = useState<string>('')
   const [del, setDel] = useState<boolean>(false)
   const [nameClicked, setNameClicked] = useState<string>('')
@@ -44,11 +51,7 @@ const ShowCustomers = ({customers, load}: Props) => {
 
   const navigate = useNavigate()
 
-  const handleUpdateModal = () => {
-    setWhichModal('updateModal')
-    setUpdateOpen(prev => !prev) 
-  }
-
+  // Function Snackbar Controller
   const handleOpenSnackbar = () => {
     setOpenSnackbar(true);
   };
@@ -61,17 +64,21 @@ const ShowCustomers = ({customers, load}: Props) => {
     setOpenSnackbar(false);
   };
 
+
+  // Function Update Customer
   const handleUpdateSubmit = () => {
     getOneCustomer(id)
     handleOpenSnackbar()
   }
 
+  // Function Delete Customer
   const handleDeleteSubmit = () => {
     deleteOneCustomer(id)
     setDel(prev => !prev)
     handleOpenSnackbar()
   }
 
+  // Function Alert Open and Close
   const handleOpenAlert = () => {
     setOpenAlert(true)
   }
@@ -80,14 +87,21 @@ const ShowCustomers = ({customers, load}: Props) => {
     setOpenAlert(false);
   };
 
+  // Function Open Specify Customer Page
   const handleOpenPage = (id: string) => {
     navigate(`/customers/${id}`)
     getSpecifyCustomer(id)
   }
 
+  // Function to Open Create Customer Modal
+  const handleUpdateModal = () => {
+    setWhichModal('updateModal')
+    setUpdateOpen(prev => !prev) 
+  }
 
+  // Render loading gif
   if(load) {
-    return <h2>Loading...</h2>
+    return <DivLoading />
   }
 
   return <>
@@ -99,8 +113,6 @@ const ShowCustomers = ({customers, load}: Props) => {
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Phone</TableCell>
               <TableCell sx={{textAlign: 'center', width: '50px'}}>
                 View
               </TableCell>
@@ -117,32 +129,45 @@ const ShowCustomers = ({customers, load}: Props) => {
               customers.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.email}</TableCell>
-                  <TableCell>{row.phone}</TableCell>
-                  <TableCell sx={{textAlign: 'center', width: '50px'}}>
+                  <TableCell sx={{textAlign: 'center', width: '10px'}}>
                     <VisibilityIcon 
                       onClick={() => {
                         handleOpenPage(row._id)
                       }}
-                      sx={{ cursor: 'pointer' }} />
+                      sx={{ 
+                        cursor: 'pointer', 
+                        transition: '0.2s ease-in', 
+                        '&:hover': {color: 'green'} 
+                      }} 
+                    />
                   </TableCell>
-                  <TableCell sx={{textAlign: 'center', width: '50px'}}>
+                  <TableCell sx={{textAlign: 'center', width: '10px'}}>
                     <UpdateIcon 
                       onClick={() => {
                         setId(row._id)
                         setNameClicked(row.name)
                         handleUpdateModal()
                       }} 
-                    sx={{ cursor: 'pointer' }} />
+                      sx={{ 
+                        cursor: 'pointer', 
+                        transition: '0.2s ease-in', 
+                        '&:hover': {color: 'blue'} 
+                      }} 
+                    />
                   </TableCell>
-                  <TableCell sx={{textAlign: 'center', width: '50px'}}>
+                  <TableCell sx={{textAlign: 'center', width: '10px'}}>
                     <DeleteIcon 
                       onClick={() => {
                         setId(row._id)
                         handleOpenAlert()
                         setDel(true)
                       }} 
-                      sx={{ cursor: 'pointer' }} />
+                      sx={{ 
+                        cursor: 'pointer', 
+                        transition: '0.2s ease-in', 
+                        '&:hover': {color: 'red'} 
+                      }} 
+                    />
                   </TableCell>
                 </TableRow>
               ))
@@ -151,9 +176,26 @@ const ShowCustomers = ({customers, load}: Props) => {
         </Table>
       </TableContainer>
     )}              
-    <SnackbarAlert openSnack={openSnackbar} closeSnack={handleCloseSnackbar} message={catchMessage} />
-    {del && <AlertDialog openAlert={openAlert} handleClose={handleCloseAlert} handleDelete={handleDeleteSubmit}/>}
-    <Modal isOpen={updateOpen} ocModal={handleUpdateModal} btn='Update' titleModal={`Update the customer:  ${nameClicked}`} submit={handleUpdateSubmit} whichModal={whichModal}/>
+    <SnackbarAlert 
+      openSnack={openSnackbar} 
+      closeSnack={handleCloseSnackbar} 
+      message={catchMessage} 
+    />
+    {del && 
+      <AlertDialog 
+        openAlert={openAlert} 
+        handleClose={handleCloseAlert} 
+        handleDelete={handleDeleteSubmit}
+      />
+    }
+    <Modal 
+      isOpen={updateOpen} 
+      ocModal={handleUpdateModal} 
+      btn='Update' 
+      titleModal={`Update the customer:  ${nameClicked}`} 
+      submit={handleUpdateSubmit} 
+      whichModal={whichModal}
+    />
 
   </>
 }

@@ -1,20 +1,12 @@
+// Built-in
 import { createContext, useState, ReactNode, useContext } from 'react'
-import axios from 'axios'
-import CreateCustomerContext from './CreateCustomerContext';
 
-type UpdateCustomerType = {
-  getOneCustomer: (id: string) => void;
-  updateName: string;
-  updateEmail: string;
-  updatePhone: string;
-  updateAdress: string;
-  updateCpf: string;
-  setUpdateName: React.Dispatch<React.SetStateAction<string>>;
-  setUpdateEmail: React.Dispatch<React.SetStateAction<string>>;
-  setUpdatePhone: React.Dispatch<React.SetStateAction<string>>;
-  setUpdateAdress: React.Dispatch<React.SetStateAction<string>>;
-  setUpdateCpf: React.Dispatch<React.SetStateAction<string>>;
-}
+// Externos
+import axios from 'axios'
+
+// Internos
+import CreateCustomerContext from './CreateCustomerContext';
+import { UpdateCustomerType } from '../interfaces/typeCustomer';
 
 type UpdateCustomerProps = {
   children?: ReactNode | undefined;
@@ -24,14 +16,20 @@ const UpdateCustomerContext = createContext({} as UpdateCustomerType)
 
 export const UpdateCustomerProvider = ({children}: UpdateCustomerProps) => {
 
+  // Function to close modal and state to display message
   const { closeModal, setCatchMessage } = useContext(CreateCustomerContext)
 
+  // States for this context
   const [updateName, setUpdateName] = useState('')
   const [updateEmail, setUpdateEmail] = useState('')
   const [updatePhone, setUpdatePhone] = useState('')
   const [updateAdress, setUpdateAdress] = useState('')
   const [updateCpf, setUpdateCpf] = useState('')
 
+  // Const to validate email
+  const emailTest = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+  // Values to patch request
   const updating = {
     name: updateName || undefined,
     email: updateEmail || undefined,
@@ -41,6 +39,34 @@ export const UpdateCustomerProvider = ({children}: UpdateCustomerProps) => {
   }
 
   const getOneCustomer = async (id: string) => {
+
+
+    // Logic to validate form
+    if (updateName.length < 3 && updateName.length !== 0 || updateName.length > 30) 
+    return setCatchMessage('Nome deve ter entre 3 e 30 caracteres')
+
+    if (updateEmail) {
+      if(!emailTest.test(updateEmail)){
+        setCatchMessage('Insira um e-mail valido para atualizar')
+        return
+      }
+    }
+
+    if (updateCpf) {
+      if (updateCpf.length !== 11) {
+        setCatchMessage('CPF deve ter 11 digitos')
+        return
+      }
+    }
+
+    if(updateAdress) {
+      if(updateAdress.length <= 4) {
+        setCatchMessage('Endereço deve ter pelo menos 5 caracteres')
+        return
+      }
+    }
+
+    // Request API to update one customer
     await axios.patch(`http://localhost:9090/customers/update/${id}`, updating)
     .then(res => {
       closeModal()
@@ -55,6 +81,7 @@ export const UpdateCustomerProvider = ({children}: UpdateCustomerProps) => {
     })
   }    
 
+  // Values for this context
   const value = {
     getOneCustomer, 
     updateName, 

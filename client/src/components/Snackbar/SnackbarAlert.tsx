@@ -1,7 +1,13 @@
+// Built-in
+import * as React from 'react'
+
+// Externos
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import * as React from 'react'
+
+// Internos
+
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,

@@ -4,7 +4,7 @@ import pgNotFound from '../../assets/images/pagenotfound.jpg'
 
 export const Background = styled.div`
   width: 100%;
-  height: 930px;
+  height: 925px;
   background-image: url(${bgLogo});
   background-size: cover
 `
@@ -17,6 +17,11 @@ export const TitleCat = styled.h1`
 export const SubTitle = styled.p`
   margin-top: 20px;
   margin-left: 30px;
+
+  @media screen and (max-width: 450px) {
+    font-size: 15px;
+    margin-left: 15px;
+  }
 `
 
 export const Select = styled.select`
@@ -25,6 +30,10 @@ export const Select = styled.select`
   padding: 4px;
   font-size: 12px;
   margin-left: 30px;
+
+  @media screen and (max-width: 620px) {
+    width: 130px;
+  }
 `
 
 export const Option = styled.option`
@@ -36,6 +45,11 @@ export const ImgCat = styled.img`
   height: 350px;
   margin: 30px auto;
   object-fit: fill;
+
+  @media screen and (max-width: 620px) {
+    width: 300px;
+    height: 300px;
+  }
 `
 
 export const Img404 = styled.img`
@@ -47,4 +61,9 @@ export const Img404 = styled.img`
   background-position: center;
   margin: 30px auto;
   border: 0;
+
+  @media screen and (max-width: 620px) {
+    width: 300px;
+    height: 300px;
+  }
 `

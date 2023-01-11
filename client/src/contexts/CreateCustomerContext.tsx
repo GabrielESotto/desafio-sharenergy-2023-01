@@ -1,25 +1,11 @@
+// Built-in
 import { createContext, useState, ReactNode } from 'react'
+
+// Externos
 import axios from 'axios'
 
-type CreateCustomerType = {
-  name: string;
-  email: string;
-  phone: string;
-  adress: string;
-  cpf: string;
-  itIsOpen: boolean;
-  btnIsClicked: boolean;
-  catchMessage: string;
-  setName: React.Dispatch<React.SetStateAction<string>>;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  setPhone: React.Dispatch<React.SetStateAction<string>>;
-  setAdress: React.Dispatch<React.SetStateAction<string>>;
-  setCpf: React.Dispatch<React.SetStateAction<string>>;
-  setBtnIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  setCatchMessage: React.Dispatch<React.SetStateAction<string>>;
-  handleCreate: () => void;
-  closeModal: () => void;
-}
+// Internos
+import { CreateCustomerType } from '../interfaces/typeCustomer'
 
 type CreateCustomerProps = {
   children?: ReactNode | undefined;
@@ -29,12 +15,13 @@ const CreateCustomerContext = createContext({} as CreateCustomerType)
 
 export const CreateCustomerProvider = ({children}: CreateCustomerProps) => {
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [adress, setAdress] = useState('')
-  const [cpf, setCpf] = useState('')
-  const [btnIsClicked, setBtnIsClicked] = useState(false)
+  // All states for this context
+  const [name, setName] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [phone, setPhone] = useState<string>('')
+  const [adress, setAdress] = useState<string>('')
+  const [cpf, setCpf] = useState<string>('')
+  const [btnIsClicked, setBtnIsClicked] = useState<boolean>(false)
   const [itIsOpen, setItIsOpen] = useState<boolean>(false)
   const [catchMessage, setCatchMessage] = useState<string>('')
 
@@ -42,6 +29,7 @@ export const CreateCustomerProvider = ({children}: CreateCustomerProps) => {
     setItIsOpen(prev => !prev)
   }
 
+  // Request API to create a customer
   const handleCreate = async () => {
     await axios.post('http://localhost:9090/customers/create', {
       name: name,
@@ -65,6 +53,7 @@ export const CreateCustomerProvider = ({children}: CreateCustomerProps) => {
     })
   }
 
+  // Values for this context
   const value = {
     name, 
     email, 

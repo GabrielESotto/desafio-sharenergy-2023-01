@@ -7,7 +7,8 @@ export const WrapItems = styled.div`
 
 export const Title = styled.h1`
   text-align: center;
-  margin-top: 30px
+  font-size: 19px;
+  margin-top: 20px
 `
 
 export const DivInfo = styled.div`
@@ -26,4 +27,10 @@ export const TextInfo = styled.p`
   font-size: 15px;
   font-style: italic;
   margin-bottom: 10px;
+`
+
+export const WrapArrow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
 `

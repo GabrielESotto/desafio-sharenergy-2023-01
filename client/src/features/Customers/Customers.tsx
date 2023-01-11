@@ -1,15 +1,27 @@
+// Built-in
 import {useContext, useState} from 'react'
-import Global from '../../assets/styles/global'
-import Header from '../../components/Header/Header'
-import CustomersContext from '../../contexts/CustomersContext'
+
+// Externos
 import AddIcon from '@mui/icons-material/Add';
-import { TitleDog as Title } from '../Dog/DogElements'
-import { Background, WrapRight, Container, WrapItems, ContentBox, BtnCreate } from './CustomersElements'
-import ShowCustomers from '../../components/ShowCustomers/ShowCustomers'
+
+// Internos
+import CustomersContext from '../../contexts/CustomersContext'
 import CreateCustomerContext from '../../contexts/CreateCustomerContext';
+import Global from '../../assets/styles/global'
 import Modal from '../../components/Modal/Modal'
+import Header from '../../components/Header/Header'
+import ShowCustomers from '../../components/ShowCustomers/ShowCustomers'
 import SnackbarAlert from '../../components/Snackbar/SnackbarAlert'
 import Pagination from '../../components/Pagination/Pagination';
+import { TitleDog as Title } from '../Dog/DogElements'
+import { 
+  Background, 
+  WrapRight, 
+  Container, 
+  WrapItems, 
+  ContentBox, 
+  BtnCreate 
+} from './CustomersElements'
 
 
 const Customers = () => {
@@ -20,8 +32,9 @@ const Customers = () => {
 
   // Page States
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [customersPerPage] = useState<number>(8)
+  const [customersPerPage] = useState<number>(5)
 
+  // Modal and Snackbar States
   const [whichModal, setWhichModal] = useState<string>('')
   const [open, setOpen] = useState<boolean>(false)
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false)
@@ -34,6 +47,8 @@ const Customers = () => {
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
+
+  // Change state of snackbar
   const handleCloseSnackbar = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -46,11 +61,14 @@ const Customers = () => {
     setOpenSnackbar(true);
   };
 
+
+  // Handle create customer request
   const handleCreateSubmit = () => {
     handleCreate()
     handleOpenSnackbar()
   }
 
+  // Open modal of create customer
   const handleModal = () => {
     setWhichModal('createModal')
     setOpen(prev => !prev)
@@ -68,6 +86,7 @@ const Customers = () => {
                 <WrapRight>
                   <BtnCreate onClick={handleModal}>New Customer <AddIcon sx={{marginLeft: '10px'}} /></BtnCreate>
                 </WrapRight>
+                {/* ShowCustomers component to render customers */}
                 <ShowCustomers customers={currentCustomer} load={loading} />  
                 <Pagination dataPerPage={customersPerPage} totalData={allCustomers.length} paginate={paginate}/> 
                 <Modal isOpen={open} ocModal={handleModal} btn='Create' titleModal='Create a new customer' submit={handleCreateSubmit} whichModal={whichModal} />    
@@ -75,7 +94,6 @@ const Customers = () => {
               </ContentBox>
             </WrapItems>
           </Container>
-          <br></br>
       </Background>
     </>
    
