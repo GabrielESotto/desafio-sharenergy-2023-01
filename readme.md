@@ -4,7 +4,7 @@
 
 Esse projeto tem como objetivo cumprir os requisitos do processo seletivo da empresa Sharenergy com o intuito de ser aprovado e também adquirir novos conhecimentos.
 
-Autor projeto: Gabriel Ernesto Sotto
+Autor do projeto: Gabriel Ernesto Sotto
 
 ## Funcionalidades do Projeto
 
@@ -87,10 +87,14 @@ Você deve receber o link no seu terminal para acessar a pagina.
 * Local:   http://localhost:4173/
 
 Agora você já pode testar todas funcionalidades e ver como o projeto ficou.
+Lembre-se, para acessar utilize o login e senha informados.
+Login: desafiosharenergy
+Senha: sh@r3n3rgy
 
-## Apresentação do Projeto
+## Apresentação do Projeto e Redes Sociais
 
 ##### [Link Youtube](https://www.youtube.com/watch?v=PM14Wg7EE40)
+##### [Linkedin](https://www.linkedin.com/in/gabriel-sotto-1a2627132/)
 
 ## Status e observações do projeto
 
