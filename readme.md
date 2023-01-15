@@ -1,12 +1,12 @@
-##  Projeto Sharenergy - Processo Seletivo 2023
+#  Projeto Sharenergy - Processo Seletivo 2023
 
-### Descrição do Projeto
+## Descrição do Projeto
 
 Esse projeto tem como objetivo cumprir os requisitos do processo seletivo da empresa Sharenergy com o intuito de ser aprovado e também adquirir novos conhecimentos.
 
 Autor projeto: Gabriel Ernesto Sotto
 
-### Funcionalidades do Projeto
+## Funcionalidades do Projeto
 
 ###### Login Page 
 *-> Verificação de usuário na database, Login, Remember Funcionality e JWT Persistence Login*
@@ -27,7 +27,7 @@ Autor projeto: Gabriel Ernesto Sotto
 
 *Todas as paginas possuem um Div Loading que é uma tela de carregamento para as requests que estão sendo carregadas.*
 
-### Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ###### Front End
 - React
@@ -49,7 +49,7 @@ Autor projeto: Gabriel Ernesto Sotto
 - JWT
 - Bcrypt
 
-### Inicialização
+## Inicialização
 
 Faça um clone desse projeto
 ```
@@ -88,11 +88,11 @@ Você deve receber o link no seu terminal para acessar a pagina.
 
 Agora você já pode testar todas funcionalidades e ver como o projeto ficou.
 
-### Apresentação do Projeto
+## Apresentação do Projeto
 
 ##### [Link Youtube](https://www.youtube.com/watch?v=PM14Wg7EE40)
 
-### Status e observações do projeto
+## Status e observações do projeto
 
 Gostaria de ter implementado alguns testes que eu fiz porém optei por deixar eles de fora dessa vez por ainda estar estudando mais sobre testes
 
