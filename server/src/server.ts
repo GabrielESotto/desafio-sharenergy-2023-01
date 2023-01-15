@@ -73,8 +73,6 @@ const StartServer = () => {
   router.use('/customers', customerRoutes);
   router.use('/users', userRoutes);
 
-  // Healthcheck
-  router.get('/ping', (req, res, next) => res.status(200).json({ message: 'pong' }));
 
   // Error handling
   router.use((req, res, next) => {
