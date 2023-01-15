@@ -4,7 +4,7 @@
 
 // Internos
 import Header from '../../components/Header/Header'
-import Signin from '../../components/Signin/Signin'
+import Signin from '../../features/Signin/Signin'
 import Global from '../../assets/styles/global'
 import { HomeContainer } from './HomeElements'
 

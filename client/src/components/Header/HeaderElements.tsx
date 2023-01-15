@@ -25,10 +25,6 @@ export const HomeLogoNoUser = styled.div`
     justify-content: center;
     margin: 20px 0 0 0;
   }
-
-  @media screen and (max-width: 500px) {
-
-  }
 `
 
 export const HomeLogo = styled.div`
@@ -39,6 +35,10 @@ export const HomeLogo = styled.div`
   @media screen and (max-width: 650px) {
     width: 150px;
     height: 85px;
+  }
+
+  @media screen and (max-width: 450px) {
+    margin: 20px 50px 0 70px;
   }
 `
 

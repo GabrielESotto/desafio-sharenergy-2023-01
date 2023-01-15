@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Name {
   title: string;
   first: string;
@@ -85,4 +87,8 @@ export interface Info {
 export interface RootObject {
   results: Result[];
   info: Info;
+}
+
+export type LoginContextProps = {
+  children?: ReactNode | undefined;
 }

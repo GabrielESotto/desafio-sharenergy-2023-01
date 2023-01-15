@@ -4,7 +4,7 @@
 
 // Internos
 import { Result } from '../../interfaces/types';
-import DivLoading from '../DivLoading/DivLoading';
+import DivLoading from '../../components/DivLoading/DivLoading';
 import {
   Box,
   PhotoUser,

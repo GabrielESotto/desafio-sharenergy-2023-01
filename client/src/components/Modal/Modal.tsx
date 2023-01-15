@@ -10,15 +10,15 @@ import Dialog from '@mui/material/Modal';
 // Internos
 import CreateCustomerContext from '../../contexts/CreateCustomerContext'
 import UpdateCustomerContext from '../../contexts/UpdateCustomerContext';
+import Button from '../Button/Button';
 import classes from '../../assets/styles/Styles.module.css'
 import { Input } from './ModalElements'
 import { 
   ContainerForm, 
   Box as BoxContent, 
   ContentDiv, 
-  Label, 
-  ColorButton 
-} from '../Signin/SigninElements';
+  Label,  
+} from '../../features/Signin/SigninElements';
 
 
 const style = {
@@ -199,16 +199,7 @@ const Modal = ({
                   /> 
                 )}
               </BoxContent>
-              <ColorButton 
-                onClick={submit} 
-                variant='contained'
-                sx={{
-                  '@media screen and (max-width: 620px)': {
-                    width: 220,
-                }}} 
-              >
-                  {btn}
-              </ColorButton>
+              <Button submit={submit} children={btn} />
             </ContainerForm>
           </ContentDiv>
         </Box>

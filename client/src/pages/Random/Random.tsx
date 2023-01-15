@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Header from '../../components/Header/Header'
 import Global from '../../assets/styles/global'
 import Pagination from '../../components/Pagination/Pagination'
-import ShowRandomUsers from '../../components/ShowRandomUsers/ShowRandomUsers'
+import ShowRandomUsers from '../../features/ShowRandomUsers/ShowRandomUsers'
 import { Result } from '../../interfaces/types'
 import {
   Container,

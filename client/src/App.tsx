@@ -1,10 +1,10 @@
-import Home from "./features/Home/Home"
+import Home from "./pages/Home/Home"
 import { Route, Routes } from 'react-router-dom'
-import Random from "./features/Random/Random"
-import Dog from "./features/Dog/Dog"
-import Cat from "./features/Cat/Cat"
-import Customers from "./features/Customers/Customers"
-import Customer from "./features/Customer/Customer"
+import Random from "./pages/Random/Random"
+import Dog from "./pages/Dog/Dog"
+import Cat from "./pages/Cat/Cat"
+import Customers from "./pages/Customers/Customers"
+import Customer from "./pages/Customer/Customer"
 
 function App() {
 

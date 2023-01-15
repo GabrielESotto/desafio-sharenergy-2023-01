@@ -39,7 +39,7 @@ const NavMobile = () => {
           color: 'black', 
           marginBottom: '5px',
           '@media screen and (max-width: 500px)': {
-            marginBottom: '20px'
+            marginBottom: '18px'
           }
         }}
         id="fade-button"

@@ -9,7 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AuthContext from '../../contexts/AuthContext'
 import NavMobile from '../NavMobile/NavMobile'
 import imageLogo from '../../assets/images/logo_color.png'
-import { 
+import {
   HomeLogo,
   Ulist,
   NavLink,
@@ -19,7 +19,7 @@ import {
   HomeLogoNoUser
  } from './HeaderElements'
 
- 
+
 const Header = () => {
 
   // Authorization Login/Logout
@@ -29,31 +29,33 @@ const Header = () => {
   const navigate = useNavigate()
   const redirectHome = () => navigate('/')
 
-  return <>
-    <NavBar>
-      {user === 'null' || !user ? (
-        <HomeLogoNoUser>
-          <ImgLogo onClick={redirectHome} src={imageLogo} />
-        </HomeLogoNoUser>
-      ) : (
-        <HomeLogo>
-          <ImgLogo onClick={redirectHome} src={imageLogo} />
-        </HomeLogo>
-      )}
-      {user === 'null' || !user ? null : (
-      <Ulist>
-        <NavLink to='/random'>Random User</NavLink>
-        <NavLink to='/cat'>HTTP Cat</NavLink>
-        <NavLink to='/dog'>Random Dog</NavLink>
-        <NavLink to='/customers'>CRUD</NavLink>
-        <NavLink to='/' onClick={logout}><LogoutIcon sx={{marginTop: '3px'}} /></NavLink>
-        <Wrap>
-          <NavMobile />
-        </Wrap>
-      </Ulist>
-      )}
-    </NavBar> 
-  </>
+  return (
+    <>
+      <NavBar>
+        {user === 'null' || !user ? (
+          <HomeLogoNoUser>
+            <ImgLogo onClick={redirectHome} src={imageLogo} alt='logo' />
+          </HomeLogoNoUser>
+        ) : (
+          <HomeLogo>
+            <ImgLogo onClick={redirectHome} src={imageLogo} alt='logo' />
+          </HomeLogo>
+        )}
+        {user === 'null' || !user ? null : (
+        <Ulist >
+          <NavLink data-testid='link' to='/random'>Random User</NavLink>
+          <NavLink to='/cat'>HTTP Cat</NavLink>
+          <NavLink to='/dog'>Random Dog</NavLink>
+          <NavLink to='/customers'>CRUD</NavLink>
+          <NavLink to='/' onClick={logout}><LogoutIcon sx={{marginTop: '3px'}} /></NavLink>
+          <Wrap>
+            <NavMobile />
+          </Wrap>
+        </Ulist>
+        )}
+      </NavBar>
+    </>
+  )
 }
 
 export default Header

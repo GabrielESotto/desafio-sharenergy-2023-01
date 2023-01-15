@@ -7,6 +7,7 @@ import axios from 'axios'
 // Internos
 import Global from '../../assets/styles/global'
 import Header from '../../components/Header/Header'
+import { httpStatus } from '../../utils/HttpStatus'
 import { Container, WrapItems } from '../Dog/DogElements'
 import { 
   Select, 
@@ -15,21 +16,10 @@ import {
   TitleCat, 
   SubTitle,
   Img404 
-} from '../Cat/CatElements'
+} from './CatElements'
 
 
 const Cat = () => {
-
-  // Options HTTP Status Code
-  const httpStatus = [
-    '100', '101', '102', '103', '200', '201', '202', '203', '204', '206', 
-    '207', '300', '301', '302', '303', '304', '305', '307', '308',
-    '400', '401', '402', '403', '404', '405', '406', '407', '408', '409', 
-    '410', '411', '412', '413', '414', '415', '416', '417', '418', '420',
-    '421', '422', '423', '424', '425', '426', '429', '431', '444', '450',
-    '451', '497', '498', '499', '500', '501', '502', '503', '504', '506',
-    '507', '508', '509', '510', '511', '521', '522', '523', '525', '599',
-  ]
 
   // States for request
   const [photo, setPhoto] = useState<string>('')
@@ -61,6 +51,7 @@ const Cat = () => {
           <TitleCat>HTTP Status Cat</TitleCat>
           <SubTitle>Choose a HTTP Status and receive a CAT image</SubTitle>
           <Select 
+            data-testid='selector'
             onChange={e => setChosenCode(e.target.value)} 
             name="https" 
             id="https"

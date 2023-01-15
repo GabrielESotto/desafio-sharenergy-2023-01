@@ -21,10 +21,10 @@ import GetCustomerContext from '../../contexts/GetCustomerContext';
 import UpdateCustomerContext from '../../contexts/UpdateCustomerContext'
 import CreateCustomerContext from '../../contexts/CreateCustomerContext'
 import DeleteCustomerContext from '../../contexts/DeleteCustomerContext'
-import DivLoading from '../DivLoading/DivLoading'
-import Modal from '../Modal/Modal'
-import AlertDialog from '../AlertDialog/AlertDialog'
-import SnackbarAlert from '../Snackbar/SnackbarAlert'
+import DivLoading from '../../components/DivLoading/DivLoading'
+import Modal from '../../components/Modal/Modal'
+import AlertDialog from '../../components/AlertDialog/AlertDialog'
+import SnackbarAlert from '../../components/Snackbar/SnackbarAlert'
 import { Customer } from '../../interfaces/typeCustomer';
 
 type Props = {

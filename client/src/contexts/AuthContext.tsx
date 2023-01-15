@@ -26,6 +26,7 @@ type AuthContextType = {
 const AuthContext = createContext({} as AuthContextType)
 
 export const AuthProvider = ({children}: AuthContextProps) => {
+
   // Using Local Storage
   const [user, setUser] = useLocalStorage('user', null)
 
@@ -42,7 +43,7 @@ export const AuthProvider = ({children}: AuthContextProps) => {
 
   // Logout function
   const logout = async () => {
-    window.localStorage.clear()
+    setUser(null)
     setTimeout(() => {
       navigate('/')
       window.location.reload()

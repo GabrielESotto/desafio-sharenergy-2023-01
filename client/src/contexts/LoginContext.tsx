@@ -7,6 +7,7 @@ import axios from "axios";
 
 // Internos
 import AuthContext from "./AuthContext";
+import { LoginContextProps } from "../interfaces/types";
 
 type LoginContextType = {
   username: string;
@@ -16,10 +17,6 @@ type LoginContextType = {
   navigateLoggedPage?: () => void;
   handleSubmit: () => void;
   catchMessage: string;
-}
-
-type LoginContextProps = {
-  children?: ReactNode | undefined;
 }
 
 const LoginContext = createContext({} as LoginContextType)
@@ -49,13 +46,11 @@ export const LoginProvider = ({children}: LoginContextProps) => {
     .then(res => {
       if(res.status === 200) {
         login(res.data)
-        console.log(res.data)
         navigateLoggedPage()
         setCatchMessage('Login realizado com sucesso')
       }
     })
     .catch(error => {
-      console.log(error.response.data)
       setCatchMessage(error.response.data)
     }) 
   }

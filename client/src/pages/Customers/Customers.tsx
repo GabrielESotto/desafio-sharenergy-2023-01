@@ -10,7 +10,7 @@ import CreateCustomerContext from '../../contexts/CreateCustomerContext';
 import Global from '../../assets/styles/global'
 import Modal from '../../components/Modal/Modal'
 import Header from '../../components/Header/Header'
-import ShowCustomers from '../../components/ShowCustomers/ShowCustomers'
+import ShowCustomers from '../../features/ShowCustomers/ShowCustomers'
 import SnackbarAlert from '../../components/Snackbar/SnackbarAlert'
 import Pagination from '../../components/Pagination/Pagination';
 import { TitleDog as Title } from '../Dog/DogElements'

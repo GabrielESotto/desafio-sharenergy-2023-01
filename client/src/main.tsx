@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
@@ -9,23 +8,26 @@ import { CreateCustomerProvider } from './contexts/CreateCustomerContext'
 import { UpdateCustomerProvider } from './contexts/UpdateCustomerContext'
 import { DeleteCustomerProvider } from './contexts/DeleteCustomerContext'
 import { GetCustomerProvider } from './contexts/GetCustomerContext'
+import { CookiesProvider } from 'react-cookie'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
-    <AuthProvider>
-      <LoginProvider>
-        <CustomersProvider>
-          <CreateCustomerProvider>
-            <UpdateCustomerProvider>
-              <DeleteCustomerProvider>
-                <GetCustomerProvider>
-                  <App />
-                </GetCustomerProvider>
-              </DeleteCustomerProvider>
-            </UpdateCustomerProvider>
-          </CreateCustomerProvider>
-        </CustomersProvider> 
-      </LoginProvider>
-    </AuthProvider>
+    <CookiesProvider>
+      <AuthProvider>
+        <LoginProvider>
+          <CustomersProvider>
+            <CreateCustomerProvider>
+              <UpdateCustomerProvider>
+                <DeleteCustomerProvider>
+                  <GetCustomerProvider>
+                    <App />
+                  </GetCustomerProvider>
+                </DeleteCustomerProvider>
+              </UpdateCustomerProvider>
+            </CreateCustomerProvider>
+          </CustomersProvider> 
+        </LoginProvider>
+      </AuthProvider>
+    </CookiesProvider>
   </BrowserRouter>
 )

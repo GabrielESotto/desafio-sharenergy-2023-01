@@ -18,6 +18,7 @@ import {
   DivVideo,
   ImgClick
 } from './DogElements'
+import Button from '../../components/Button/Button'
 
 
 const Dog = () => {
@@ -70,9 +71,7 @@ const Dog = () => {
       <Container>
         <WrapItems>
           <TitleDog>Random Dog</TitleDog>
-          <ColorButton onClick={handleRefresh} variant="contained">
-            Refresh Image
-          </ColorButton>
+          <Button submit={handleRefresh} children='Refresh Image'/>
           {randomDog.includes('.mp4') || randomDog.includes('.webm') ? (
             randomDog ? (
               <DivVideo autoPlay src={`http://random.dog/${randomDog}`}/> 
